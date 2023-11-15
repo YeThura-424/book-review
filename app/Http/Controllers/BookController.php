@@ -50,12 +50,11 @@ class BookController extends Controller
 
         $response = [
             'success' => true,
-            'message'=> $message,
+            'message' => $message,
             'data' => $book,
         ];
 
         return response()->json($response);
-        
     }
 
     /**
@@ -71,14 +70,14 @@ class BookController extends Controller
         $bookreview = Book::with('reviews')->findOrFail($bookid);
         $averageRating = $bookreview->reviews->avg('rating');
         $bookreviews = $bookreview->reviews;
-        $review= [];
-        foreach($bookreviews as $bookreview) {
+        $review = [];
+        foreach ($bookreviews as $bookreview) {
             $review[] = [
                 'review' => $bookreview->review,
             ];
         }
 
-         if (is_null($book)) {
+        if (is_null($book)) {
             $status = 404;
             $message = 'Book not found';
 
@@ -98,8 +97,8 @@ class BookController extends Controller
                 'success' => true,
                 'message' => $message,
                 'data' => $book,
-                'review'=> $review,
-                'avg_rating'=> $averageRating,
+                'review' => $review,
+                'avg_rating' => $averageRating,
 
             ];
 
@@ -166,12 +165,12 @@ class BookController extends Controller
         $message = 'Book deleted successfully';
 
 
-            $response = [
-                'success' => true,
-                'status' => $status,
-                'message' => $message,
-            ];
+        $response = [
+            'success' => true,
+            'status' => $status,
+            'message' => $message,
+        ];
 
-            return response()->json($response);
+        return response()->json($response);
     }
 }
