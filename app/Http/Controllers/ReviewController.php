@@ -51,7 +51,6 @@ class ReviewController extends Controller
             'data' => $review,
         ];
         return response()->json($response);
-        
     }
 
     /**
